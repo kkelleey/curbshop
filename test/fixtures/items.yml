@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  category: MyString
+  picture: MyString
+  starting_price: 1
+  highest_bid: 1
+  description: MyText
+  city: MyString
+  state: MyString
+  user_id: MyString
+  integer: MyString
+
+two:
+  category: MyString
+  picture: MyString
+  starting_price: 1
+  highest_bid: 1
+  description: MyText
+  city: MyString
+  state: MyString
+  user_id: MyString
+  integer: MyString

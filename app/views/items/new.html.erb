@@ -1,0 +1,29 @@
+<h1>Put your item on your curb.</h1>
+
+<%= form_for @item do |f| %>
+	<div>
+		<%= f.select :category, [['Appliances','appliances'],['Couches','couches'],['Chairs','chairs'],['Tables','tables'],['Beds','beds'],['Lights','lights'], ['Other','other']] %>
+    </div>
+
+	<div>
+		<%= f.label :description %>
+		<%= f.text_field :description %>
+	</div>
+	<div>
+		<%= f.label :picture %>
+		<%= f.text_field :picture %>
+	</div>
+	<div>
+		<%= f.label :starting_price %>
+		<%= f.text_field :starting_price %>
+	</div>
+	<div>
+		<%= f.label :city %>
+		<%= f.text_field :city %>
+	</div>
+	<div>
+		<%= f.label :state %>
+		<%= f.select :state, @states %>
+	</div>
+	<%= f.submit %>
+<% end %>

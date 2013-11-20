@@ -1,0 +1,48 @@
+
+<select name="Appliances"> 
+	<option value="">Choose an Appliance</option>
+	<option value="fridges">Fridges</option>
+	<option value="washers">Washers</option>
+	<option value="dryers">Dryers</option>
+	<option value="microwaves">Microwaves</option>
+</select>
+
+<select name="Couches">
+	<option value="couches">Couches</option>
+</select>
+
+<select name="Chairs">
+	<option value="living_room_chairs">Living Room </option>
+	<option value="desk_chair_chairs">Desk </option>
+	<option value="dining_room_chairs">Dining Room </option>
+</select>
+
+<select name="Tables">
+	<option value="dining_room_tables">Dining Room </option>
+	<option value="kitchen_tables">Kitchen </option>
+	<option value="end_tables">End Tables </option>
+</select>
+
+<select>
+	<option value="nightstand">Nightstands </option>
+	<option value="dresser">Dressers </option>
+</select>
+
+<select>
+	<option value="">Choose a Bed Type </option>
+	<option value="full_set">Full Set</option>
+	<option value="mattress">Just Mattress</option>
+	<option value="frame">Just Frame</option>
+</select>
+
+<select name="lighting">
+	<option value="">Choose a lighting type </option>
+	<option value="floor_lamp">Floor</option>
+	<option value="desk_lamp">Desk</option>
+</select>
+
+<% @items.each do |item| %>
+<%= item.category %>
+<%end %>
+
+
