@@ -1,0 +1,17 @@
+
+<div class="jumbotron">
+	<h1>Welcome to CurbShop! </h1>
+	<p> You can <%=link_to 'sign in', new_user_session_path %>
+		or <%= link_to 'sign up', new_user_registration_path %></p>
+	<p><%= link_to 'Go CurbShopping', shopping_path %> </p> 
+	<p><%= link_to 'Put items on the Curb', new_path %></p>
+</div>
+
+<h3>What is CurbShop? </h3>
+<p>CurbShop is a marketplace for users to buy and sell used furniture. On CurbShop, users can either go CurbShopping--view and bid on furniture that is for sale in their area, or put items on their Curb--put their items up for sale on CurbShop. </p>
+
+<h3>How it works </h3>
+<h5>Putting your item on your curb</h5>
+<p>Once you have entered your item's information (category, description, starting price, picture, location), your item will be put on the curb at 12:00 AM the next day. CurbShoppers will then be able to bid on your item. The curb is cleared every night at 10 PM, so if your item receives a bid by that time, it will be removed from the curb and you will receive the highest bid price and contact information of the highest bidder. If your item does not receive a bid, it will not be removed from the curb, it will remain on the curb until it receives a bid</p>
+
+

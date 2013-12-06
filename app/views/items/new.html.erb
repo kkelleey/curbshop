@@ -1,22 +1,33 @@
+
+
 <h1>Put your item on your curb.</h1>
 
-<%= form_for @item do |f| %>
-	<div>
-		<%= f.select :category, [['Appliances','appliances'],['Couches','couches'],['Chairs','chairs'],['Tables','tables'],['Beds','beds'],['Lights','lights'], ['Other','other']] %>
-    </div>
+<h2><%=@user_id %></h2>
 
+
+<%= form_for @item, :html => { :multipart => true } do |f|  %>
+	
+	<div>
+		<%= f.label :category %>
+		<%= f.select :category_id, Category.all.collect {|c| [ c.name, c.id ] } %>
 	<div>
 		<%= f.label :description %>
 		<%= f.text_field :description %>
 	</div>
+	<input type='hidden' id='item_user_id' name='item[user_id]' value="<%= @user_id %>">
 	<div>
-		<%= f.label :picture %>
-		<%= f.text_field :picture %>
+		<%= f.fields_for :item_images do |builder| %>
+
+          <%= builder.label :image, "Image File" %>
+          <%= builder.file_field :image %>
+        <% end %>
+
 	</div>
 	<div>
-		<%= f.label :starting_price %>
+		<%=f.label :starting_price %>
 		<%= f.text_field :starting_price %>
 	</div>
+
 	<div>
 		<%= f.label :city %>
 		<%= f.text_field :city %>
@@ -26,4 +37,4 @@
 		<%= f.select :state, @states %>
 	</div>
 	<%= f.submit %>
-<% end %>
+<% end %>	

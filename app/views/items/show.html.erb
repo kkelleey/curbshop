@@ -1,3 +1,8 @@
 <h1>Success! You Put Your Item on Your Curb! </h1>
-<h4><%="Category: "+@item.category %><br>
-</h4>
+<h3>Category: <%=@category%> </h3>
+<h5> Description: <%=@item.description %> </h5>
+<h3> Location: <%=@item.city %>, <%= @item.state %> </h3>
+<h3> Starting Price: <%=@item.starting_price %> </h3>
+<%= image_tag @item.item_images[0].image(:medium) %>
+<br>
+<h2> We will alert you if your item sells </h2>

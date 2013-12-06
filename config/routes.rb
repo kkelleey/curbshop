@@ -5,7 +5,9 @@ Curbshop::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-  root "items#index"
+
+  root "splash#index"
+  get '/items', to: 'items#index', as:'user_root' #devise nuance
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

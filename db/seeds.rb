@@ -15,3 +15,7 @@ states = State.create([{state: 'AL'}, {state: 'AK'}, {state: 'AZ'}, {state: 'AR'
 	{state: 'OH'}, {state: 'OK'}, {state: 'OR'}, {state: 'PA'}, {state: 'RI'},
 	{state: 'SC'}, {state: 'SD'}, {state: 'TN'}, {state: 'TX'}, {state: 'UT'}, {state: 'VT'},
 	{state: 'VA'}, {state: 'WA'}, {state: 'WV'}, {state: 'WI'}, {state: 'WY'}])
+
+
+categories = Category.create([{name: 'Appliances'}, {name: 'Couches'}, {name: 'Chairs'}, {name: 'Tables'},
+	{name: 'Storage'}, {name: 'Beds'}, {name: 'Lights'},  {name: 'Textiles'} ])
