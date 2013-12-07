@@ -13,6 +13,7 @@ Curbshop::Application.routes.draw do
   #   get 'products/:id' => 'catalog#view'
   get 'shopping' => 'items#shopping'
   get 'new' => 'items#new'
+  get 'bids' => 'bids#show'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
@@ -20,7 +21,7 @@ Curbshop::Application.routes.draw do
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
   resources :items
-  resources :states
+  resources :bids
 
   # Example resource route with options:
   #   resources :products do

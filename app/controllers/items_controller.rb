@@ -5,17 +5,13 @@ class ItemsController < ApplicationController
   		@categories = Category.find(:all, :conditions => {:parent_id => nil } )
       @items = Item.all
       @bid=Bid.new
+      @user_id=current_user.id
   	end
 
   	def new
       @user_id=current_user.id 
       @item=Item.new
-      3.times{@item.item_images.build} 
-      states=State.all
-      @states=[]
-      states.each do |state|
-        @states<<state.state
-      end  
+      3.times{@item.item_images.build}   
   	end
 
     def create

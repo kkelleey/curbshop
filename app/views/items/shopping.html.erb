@@ -3,6 +3,7 @@
 
 <form method="get">
 <select class="form-control" name="category_id" onchange="this.form.submit()">
+  <option value=''>Select...</option>
   <% @categories.each do |category| %>
   	 <option value="<%=category.id %>"><%=category.name %></option>
    <% end %>
@@ -20,15 +21,17 @@
 			<%= image_tag item.item_images[0].image(:medium) %><br>
 			<%= item.description %><br>
 			<%= item.city %><br>
-			<%= item.starting_price %><br>
+			<% bid=Bid.where(item_id: item.id).last %>
+			<% price= bid ? bid.bid : item.starting_price %>
+			<%= 'Price: '+price.to_s %><br>
 			<%= form_for @bid do |f| %>
-				<%= f.label :bid %>
 				<%=f.text_field :bid %>
-				<% f.submit %>
-			<% end %>
+				<%= f.submit %>
+				<input type='hidden' id='bid_user_id' name='bid[user_id]' value="<%= @user_id %>">
+				<input type='hidden' id='bid_item_id' name='bid[item_id]' value="<%= item.id %>">
+				<!--Hidden form for price -->
 		</div>
-
-		</div>
+	<% end %>
 		<% if count%4==3 %>
 			</div>
 		<%end %>

@@ -1,8 +1,8 @@
 
 <div class="jumbotron">
-	<h1>Welcome to CurbShop! </h1>
-	<p> You can <%=link_to 'sign in', new_user_session_path %>
-		or <%= link_to 'sign up', new_user_registration_path %></p>
+	<h1>Welcome to CurbShop! <small> The September 1st App </small></h1>
+	<h4><%=link_to 'sign in', new_user_session_path %>
+		<%= link_to 'sign up', new_user_registration_path %></h4>
 	<p><%= link_to 'Go CurbShopping', shopping_path %> </p> 
 	<p><%= link_to 'Put items on the Curb', new_path %></p>
 </div>

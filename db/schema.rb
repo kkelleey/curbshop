@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131204015311) do
+ActiveRecord::Schema.define(version: 20131207193037) do
 
   create_table "bids", force: true do |t|
     t.integer  "item_id"
@@ -48,14 +48,7 @@ ActiveRecord::Schema.define(version: 20131204015311) do
     t.integer  "highest_bid"
     t.text     "description"
     t.string   "city"
-    t.string   "state"
     t.integer  "user_id",        limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "states", force: true do |t|
-    t.string   "state"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -18,8 +18,14 @@ test:
   pool: 5
   timeout: 5000
 
+# production:
+#   adapter: sqlite3
+#   database: db/production.sqlite3
+#   pool: 5
+#   timeout: 5000
+
 production:
-  adapter: sqlite3
-  database: db/production.sqlite3
-  pool: 5
-  timeout: 5000
+  adapter: postgresql
+  password:
+  host: 12.0.0.1
+  database: curbshop_prod
