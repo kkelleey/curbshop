@@ -1,4 +1,5 @@
 
+
 <h3>Select a Category</h3>
 
 <form method="get">
@@ -38,3 +39,15 @@
 		<% count +=1 %>
 	<%end%>
 <%end %>
+
+
+<%Instagram.configure do |config|
+  config.client_id = "8e29ac2743964cb4844c022fc7a2ee08"
+  config.client_secret = "ee7b3c9f5aeb47429391196cd8f06c70"
+end %>
+
+<%=user= Instagram.user_search("ktran13").first %>
+
+	<%= image_tag user.profile_picture %><br>
+
+

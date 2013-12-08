@@ -27,6 +27,12 @@ class ItemsController < ApplicationController
       end
     end
 
+    def curb
+      @user_id=current_user.id
+      @items_for_sale=Item.find(:all, :conditions => {:user_id=> @user_id })
+      @bids_placed=Bid.find(:all, :conditions => {:user_id=> @user_id })
+    end
+
     def show
       @item=Item.find(params[:id])
       category_id=@item.category_id

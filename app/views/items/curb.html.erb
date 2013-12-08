@@ -1,0 +1,18 @@
+<h2>Items you are selling </h2>
+
+<% @items_for_sale.each do |item| %>
+
+	<% if item.sold %>
+		<p>
+		<%= 'Your item sold for:'+item.sold_price.to_s %><br/>
+		Contact: <a href="mailto:'<%= item.highest_bidder.email %>'"><%= item.highest_bidder.email%></a><br/>
+		</p>
+	<%end%>
+
+<% end %>
+
+<h2>Items you are bidding on </h2>
+
+	
+
+<% end %>
