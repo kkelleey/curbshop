@@ -2,11 +2,21 @@ class ItemsController < ApplicationController
 
   before_action :authenticate_user!  #devise method
   	def shopping
-  		@categories = Category.find(:all, :conditions => {:parent_id => nil } )
-      @items = Item.all
-      @bid=Bid.new
-      @user_id=current_user.id
+        @bid=Bid.new
+        @categories=Category.all 
+        if params[:category_id].blank?
+          items=Item.all
+        else
+          items=Item.where(category_id: params[:category_id])
+        end
+        @items=[]
+        items.each do |item|
+          if ! item.sold
+            @items<<item
+          end
+        end
   	end
+
 
   	def new
       @user_id=current_user.id 
@@ -28,16 +38,12 @@ class ItemsController < ApplicationController
     end
 
     def curb
-      @user_id=current_user.id
-      @items_for_sale=Item.find(:all, :conditions => {:user_id=> @user_id })
-      @bids_placed=Bid.find(:all, :conditions => {:user_id=> @user_id })
+      user_id=current_user.id
+      @items_for_sale=Item.where user_id: user_id
+      @items_bid_on=Bid.select(:item_id).distinct.where(user_id: user_id)
     end
 
     def show
       @item=Item.find(params[:id])
-      category_id=@item.category_id
-      category=Category.find(category_id)
-      @category=category.name
-      @description=@item.description
     end
 end

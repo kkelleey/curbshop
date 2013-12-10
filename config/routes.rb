@@ -15,6 +15,7 @@ Curbshop::Application.routes.draw do
   get 'new' => 'items#new'
   get 'bids' => 'bids#show'
   get 'curb' => 'items#curb'
+  get 'bid_error'=> 'bids#bid_error'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

@@ -11,15 +11,17 @@ class BidsController < ApplicationController
      	if @bid.save
      		redirect_to shopping_path, notice: 'Bid successfully created'
      	else
-     		render :shopping
-     	end
+     		redirect_to bid_error_path
+    	end
 	end
 
 	def update
 	end
 
 	def show
-		@bid=Bid.find(params[:id])
+	end
+
+	def bid_error
 	end
 	
 end

@@ -5,13 +5,21 @@ class Item < ActiveRecord::Base
 	accepts_nested_attributes_for :item_images
 	has_many :bids
 
-	#for selling
-	def sold_price
+
+	def highest_bid
 		return bids.last.bid
 	end
 
 	def highest_bidder
 		return User.find(bids.last.user_id)
+	end
+
+	def current_price
+		if has_bids
+			return Bid.where(item_id: id).last.bid
+		else
+			return starting_price
+		end
 	end
 
 	def has_bids
@@ -21,7 +29,7 @@ class Item < ActiveRecord::Base
 	def sold
 		if has_bids 
 			last_bid=bids.last
-			if last_bid.created_at < Date.tomorrow
+			if last_bid.created_at < Date.today
 				return true
 			else
 				return false 
@@ -30,8 +38,5 @@ class Item < ActiveRecord::Base
 			return false
 		end
 	end
-	#end selling
-
-	#start buying
 
 end

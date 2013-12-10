@@ -11,43 +11,25 @@
 </select>
 </form>
 
-
-<% count=0 %>
+<% count = 0 %>
 <% @items.each do |item| %>
-	<% if item.category_id == params[:category_id].to_i %>
-		<% if count%4==0 %>
-			<div class="row">
-		<%end %>
-		<div class="span3">
-			<%= image_tag item.item_images[0].image(:medium) %><br>
-			<%= item.description %><br>
-			<%= item.city %><br>
-			<% bid=Bid.where(item_id: item.id).last %>
-			<% price= bid ? bid.bid : item.starting_price %>
-			<%= 'Price: '+price.to_s %><br>
-			<%= form_for @bid do |f| %>
-				<%=f.text_field :bid %>
-				<%= f.submit %>
-				<input type='hidden' id='bid_user_id' name='bid[user_id]' value="<%= @user_id %>">
-				<input type='hidden' id='bid_item_id' name='bid[item_id]' value="<%= item.id %>">
-				<!--Hidden form for price -->
-		</div>
-	<% end %>
-		<% if count%4==3 %>
-			</div>
-		<%end %>
-		<% count +=1 %>
-	<%end%>
-<%end %>
-
-
-<%Instagram.configure do |config|
-  config.client_id = "8e29ac2743964cb4844c022fc7a2ee08"
-  config.client_secret = "ee7b3c9f5aeb47429391196cd8f06c70"
-end %>
-
-<%=user= Instagram.user_search("ktran13").first %>
-
-	<%= image_tag user.profile_picture %><br>
-
-
+	<% if count%4 ==0
+		puts '<div class="row">'
+	 end %>
+	<div class="span3">
+		<p><%= image_tag item.item_images[0].image(:medium) %><br>
+		<%= item.description %><br>
+		<%= item.city %><br>
+		
+		Price: <%=item.current_price %><br>
+		<%= form_for @bid do |f| %>
+			<%=f.text_field :bid %>
+			<input type='hidden' id='bid_user_id' name='bid[user_id]' value="<%= current_user.id %>">
+			<input type='hidden' id='bid_item_id' name='bid[item_id]' value="<%= item.id %>">
+			<%= f.submit %>
+		<% end %>
+	</p></div>
+	<% if count%4==3
+		puts '</div>'
+	 end %>  <!-- end row -->
+<% end %>
