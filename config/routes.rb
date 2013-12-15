@@ -6,16 +6,15 @@ Curbshop::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
-  root "splash#index"
-  get '/items', to: 'items#index', as:'user_root' #devise nuance
-
+  root "items#shopping"
+  get '/items', to: 'items#shopping', as:'user_root' #devise nuance
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
   get 'shopping' => 'items#shopping'
   get 'new' => 'items#new'
-  get 'bids' => 'bids#show'
   get 'curb' => 'items#curb'
-  get 'bid_error'=> 'bids#bid_error'
+  get 'about' => 'items#about'
+
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
@@ -24,6 +23,7 @@ Curbshop::Application.routes.draw do
   #   resources :products
   resources :items
   resources :bids
+  resources :users
 
   # Example resource route with options:
   #   resources :products do

@@ -2,46 +2,57 @@
 
 <% if @items_for_sale.empty? %>
 	<%= 'You do not have any items for sale' %>
-<% end %>
-<% @items_for_sale.each do |item| %>
-	<%= image_tag item.item_images[0].image(:medium) %><br>
-	<% if item.sold %>
-		<p>
-		<%= 'Your item sold for:'+item.highest_bid.to_s %><br/>
-		Contact: <a href="mailto:'<%= item.highest_bidder.email %>'"><%= item.highest_bidder.email%></a><br/>
-		</p>
-	<% elsif item.has_bids %>
-		<p>
-		Your item has bids! Check back tomorrow for the contact information of the highest bidder. </p>
-	<% else %>
-		<p> Your item doesn't have any bids. </p>
+<% else %>
+<div id="wrapper">
+	<div id="columns">
+	<% @items_for_sale.each do |item| %>
+		<div class="pin">
+			<img src="<%= item.item_images[0].image(:medium) %>" %><br>
+		<% if item.sold %>
+			<p>
+			<%= 'Your item sold for:'+item.highest_bid.to_s %><br/>
+			Contact: <a href="mailto:'<%= item.highest_bidder.email %>'"><%= item.highest_bidder.email%></a><br/>
+			</p></div>
+		<% elsif item.has_bids %>
+			<p>
+			Your item has bids! Check back tomorrow for the contact information of the highest bidder. </p></div>
+		<% else %>
+			<p> Your item doesn't have any bids. </p></div>
+		<% end %>
 	<% end %>
-
+</div></div>
 <% end %>
 
 <h2>Items you are bidding on </h2>
 <% if @items_bid_on.empty? %>
 	<%= 'You have not bid on any items' %>
-<% end %>
-<% @items_bid_on.each do |item| %>
-	<% 
-	#full item
-	item = Item.find(item.item_id) %>
-	<%= image_tag item.item_images[0].image(:medium) %><br>
-	<% if item.sold %>
-		<% if item.highest_bidder==current_user %>
-			<p>
-			You won this item for <%=item.highest_bid %><br/>Contact: <a href="mailto:'<%= item.highest_bidder.email %>'"><%= item.highest_bidder.email%></a><br/>
-			</p>
-		<%else%>
-			<p> Sorry, you didn't win this item.</p>
-		<%end %>
-	<% else %>
-		<% if item.highest_bidder==current_user %>
-			<p>You are currently the highest bidder on this item. The item will be awarded to the highest bidder at the end of the day, so check back tomorrow to see if you've won. </p>
+<% else %>
+	<div id="wrapper">
+		<div id="columns">
+	<% @items_bid_on.each do |item| %>
+		<div class="pin">
+		
+		<% #full item
+		item = Item.find(item.item_id) %>
+		<img src="<%=item.item_images[0].image(:medium) %>" />
+		<% if item.sold %>
+			<% if item.highest_bidder==current_user %>
+				<p>
+				You won this item for <%=item.highest_bid %><br/>Contact: <a href="mailto:'<%= item.highest_bidder.email %>'"><%= item.highest_bidder.email%></a><br/>
+				</p>
+			<%else%>
+				<p> Sorry, you didn't win this item.</p>
+			<%end %>
 		<% else %>
-			<p> You are no longer the higest bidder on this item. </p>
+			<% if item.highest_bidder==current_user %>
+				<p>You are currently the highest bidder on this item. The item will be awarded to the highest bidder at the end of the day, so check back tomorrow to see if you've won. </p>
+			<% else %>
+				<p> You are no longer the higest bidder on this item. </p>
+			<% end %>
 		<% end %>
+		</div>
 	<% end %>
+</div>
+</div>
 <% end %>
 

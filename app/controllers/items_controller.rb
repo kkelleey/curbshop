@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
 
-  before_action :authenticate_user!  #devise method
+  before_filter :authenticate_user!, :except => [:shopping]
   	def shopping
         @bid=Bid.new
         @categories=Category.all 
@@ -19,14 +19,16 @@ class ItemsController < ApplicationController
 
 
   	def new
+      @instagram_images=current_user.instagram_images
       @user_id=current_user.id 
+      @user=User.find(@user_id)
       @item=Item.new
       3.times{@item.item_images.build}   
   	end
 
     def create
       item_params = params.require(:item).permit(:category_id, :description, :item_image, :user_id, :starting_price,
-        :city, :state, item_images_attributes: [:image])
+        :city, item_images_attributes: [:image])
       Rails.logger.debug "The params are #{item_params}"
       @item = Item.new(item_params)
 

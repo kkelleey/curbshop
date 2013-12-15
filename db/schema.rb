@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131207193037) do
+ActiveRecord::Schema.define(version: 20131215032722) do
 
   create_table "bids", force: true do |t|
     t.integer  "item_id"
@@ -54,7 +54,6 @@ ActiveRecord::Schema.define(version: 20131207193037) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "email_address"
     t.string   "instagram_username"
     t.datetime "created_at"
     t.datetime "updated_at"

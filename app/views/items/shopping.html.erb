@@ -1,35 +1,40 @@
 
 
-<h3>Select a Category</h3>
-
-<form method="get">
-<select class="form-control" name="category_id" onchange="this.form.submit()">
-  <option value=''>Select...</option>
+<ul class="nav nav-pills">
+  <li class="<%= 'active' if params[:category_id].blank? %>">
+    <%= link_to "All", shopping_path %>
+  </li>
   <% @categories.each do |category| %>
-  	 <option value="<%=category.id %>"><%=category.name %></option>
+  	 <% if category.id.to_s == params[:category_id]
+  	 		active = 'class="active"'
+  	 	else
+  	 		active = ''
+  	 	end
+  	 %>
+  	 <li class="<%= 'active' if params[:category_id] == category.id.to_s %>"> <%=link_to "#{category.name}", :category_id => category.id %></li>
    <% end %>
-</select>
-</form>
+  </ul>
 
-<% count = 0 %>
+<div id="wrapper">
+	<div id="columns">
 <% @items.each do |item| %>
-	<% if count%4 ==0
-		puts '<div class="row">'
-	 end %>
-	<div class="span3">
-		<p><%= image_tag item.item_images[0].image(:medium) %><br>
+	<div class="pin">
+		<img src="<%=item.item_images[0].image(:medium) %>" />
+		<p>
 		<%= item.description %><br>
 		<%= item.city %><br>
 		
-		Price: <%=item.current_price %><br>
-		<%= form_for @bid do |f| %>
-			<%=f.text_field :bid %>
-			<input type='hidden' id='bid_user_id' name='bid[user_id]' value="<%= current_user.id %>">
-			<input type='hidden' id='bid_item_id' name='bid[item_id]' value="<%= item.id %>">
-			<%= f.submit %>
+		$<%=item.current_price %><br>
+		<% if user_signed_in? %>
+			<%= form_for @bid do |f| %>
+				<%=f.text_field :bid %>
+				<input type='hidden' id='bid_user_id' name='bid[user_id]' value="<%= current_user.id %>">
+				<input type='hidden' id='bid_item_id' name='bid[item_id]' value="<%= item.id %>">
+				<%= f.submit %>
+			<% end %>
 		<% end %>
-	</p></div>
-	<% if count%4==3
-		puts '</div>'
-	 end %>  <!-- end row -->
+	</p>
+</div>
 <% end %>
+</div>
+</div>

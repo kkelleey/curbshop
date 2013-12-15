@@ -9,7 +9,7 @@ class BidsController < ApplicationController
       	@bid = Bid.new(bid_params)
 
      	if @bid.save
-     		redirect_to shopping_path, notice: 'Bid successfully created'
+     		redirect_to @bid 
      	else
      		redirect_to bid_error_path
     	end
@@ -19,9 +19,9 @@ class BidsController < ApplicationController
 	end
 
 	def show
+		@bid=Bid.find(params[:id])
+		@image=@bid.item.item_images[0].image(:medium)
 	end
 
-	def bid_error
-	end
 	
 end

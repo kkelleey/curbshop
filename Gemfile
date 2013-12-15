@@ -15,6 +15,9 @@ group :development, :test do
 	gem 'sqlite3'
 end
 
+gem 'instagram'
+
+gem 'image-picker-rails'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
