@@ -7,7 +7,7 @@
 	<div id="columns">
 	<% @items_for_sale.each do |item| %>
 		<div class="pin">
-			<img src="<%= item.item_images[0].image(:medium) %>" %><br>
+			<img src="<%= item.imageDisplay %>" /><br>
 		<% if item.sold %>
 			<p>
 			<%= 'Your item sold for:'+item.highest_bid.to_s %><br/>
@@ -34,7 +34,7 @@
 		
 		<% #full item
 		item = Item.find(item.item_id) %>
-		<img src="<%=item.item_images[0].image(:medium) %>" />
+		<img src="<%=item.imageDisplay %>" />
 		<% if item.sold %>
 			<% if item.highest_bidder==current_user %>
 				<p>

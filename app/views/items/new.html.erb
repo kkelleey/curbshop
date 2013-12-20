@@ -3,15 +3,16 @@
 <h1>Put your item on your curb.</h1>
 <br>
 <br>
+<%= form_for @item, :html => { :multipart => true } do |f|  %>
+
 <% if !@instagram_images.nil? %>
 	<h5>Here are your most recent Instagram images. If one 
 		of them is an image of your item, select it below. Otherwise, you can browse from your computer. </h5>
 	<% @instagram_images.each do |image_url| %>
+	<%= f.radio_button(:picture, image_url) %> 
 	<img src="<%=image_url %>" data-value="image_value" class="img-polaroid">
 	<% end %>
 <% end %>
-	
-<%= form_for @item, :html => { :multipart => true } do |f|  %>
 	
 	<div>
 		<%= f.label :category %>
@@ -22,11 +23,11 @@
 	</div>
 	<input type='hidden' id='item_user_id' name='item[user_id]' value="<%= @user_id %>">
 	<div>
-		<%= f.fields_for :item_images do |builder| %>
+<!-- 		<%= f.fields_for :item_images do |builder| %>
 
           <%= builder.label :image, "Image File" %>
           <%= builder.file_field :image %>
-        <% end %>
+        <% end %> -->
 
 	</div>
 	<div>
@@ -38,5 +39,6 @@
 		<%= f.label :city %>
 		<%= f.text_field :city %>
 	</div>
+
 	<%= f.submit 'Put item on your curb'%>
 <% end %>	

@@ -1,7 +1,7 @@
 <h1>Success! You Put Your Item on your curb! </h1>
 <h4> Check your My Curb page to see the status of your item </h4>
 <br>
-<%= image_tag @item.item_images[0].image(:medium) %>
+<%= image_tag @item.imageDisplay %>
 <h5>Category: <%=@item.category.name%> </h5>
 <h5> Description: <%=@item.description %> </h5>
 <h5> Location: <%=@item.city %> </h5>

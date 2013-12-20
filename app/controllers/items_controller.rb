@@ -27,7 +27,7 @@ class ItemsController < ApplicationController
   	end
 
     def create
-      item_params = params.require(:item).permit(:category_id, :description, :item_image, :user_id, :starting_price,
+      item_params = params.require(:item).permit(:category_id, :description, :picture, :item_image, :user_id, :starting_price,
         :city, item_images_attributes: [:image])
       Rails.logger.debug "The params are #{item_params}"
       @item = Item.new(item_params)
