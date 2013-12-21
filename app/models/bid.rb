@@ -17,7 +17,6 @@ class Bid < ActiveRecord::Base
 		end
 	end
 
-
 end
 
 
