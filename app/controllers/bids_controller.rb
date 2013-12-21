@@ -9,9 +9,9 @@ class BidsController < ApplicationController
       	@bid = Bid.new(bid_params)
 
      	if @bid.save
-     		redirect_to @bid 
+     		redirect_to shopping_path 
      	else
-     		redirect_to bid_error_path
+     		redirect_to shopping_path
     	end
 	end
 
@@ -20,7 +20,7 @@ class BidsController < ApplicationController
 
 	def show
 		@bid=Bid.find(params[:id])
-		@image=@bid.item.item_images[0].image(:medium)
+		@image=@bid.item.imageDisplay
 	end
 
 	

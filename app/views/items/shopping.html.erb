@@ -21,7 +21,7 @@
 	<div id="columns">
 <% @items.each do |item| %>
 	<div class="pin">
-		<img src="<%=item.item_images[0].image(:medium) %>" />
+		<img src="<%=item.imageDisplay %>" />
 		<p>
 		<%= item.description %><br>
 		<%= item.city %><br>
