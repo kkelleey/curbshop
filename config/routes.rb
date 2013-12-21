@@ -24,6 +24,7 @@ Curbshop::Application.routes.draw do
   resources :items
   resources :bids
   resources :users
+  resources :categories
 
   # Example resource route with options:
   #   resources :products do
