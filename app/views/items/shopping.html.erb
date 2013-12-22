@@ -1,5 +1,4 @@
 
-<%= link_to "Add more categories", new_category_path %>
 <ul class="nav nav-pills">
   <li class="<%= 'active' if params[:category_id].blank? %>">
     <%= link_to "All", shopping_path %>
@@ -8,31 +7,45 @@
   	<li class="<%= 'active' if params[:category_id] == category.id.to_s %>"> <%=link_to "#{category.name}", :category_id => category.id %></li>
   <% end %>
 </ul>
+
 <div id="wrapper">
 	<div id="columns">
-<% @items.each do |item| %>
-	<div class="pin">
-		<img src="<%=item.imageDisplay %>" />
-		<p>
-		<%= item.description %><br>
-		<%= item.city %><br>
-		
-		$<%=item.current_price %><br>
-		<% if user_signed_in? %>
-      <%= form_for @bid do |f| %>
-				<input type='hidden' id='bid_user_id' name='bid[user_id]' value="<%= current_user.id %>">
-				<input type='hidden' id='bid_item_id' name='bid[item_id]' value="<%= item.id %>">
-        <% if item.user_id==current_user.id %>
-          <%=f.text_field :bid, :placeholder =>"You can't bid on your own item", :disabled => 'disabled' %>
-  				<%= f.submit 'Bid', :disabled => 'disabled' %>
-        <% else %>
-          <%=f.text_field :bid, :placeholder =>'> '+item.current_price.to_s %>
-          <%= f.submit 'Bid' %>
-        <% end %>
-			<% end %>
-		<% end %>
-	</p>
-</div>
-<% end %>
-</div>
+    <% @items.each do |item| %>
+  	  <div class="pin">
+  		  <div class="span2">
+          <%= link_to image_tag(item.imageDisplay), item %>
+    		  <p>
+    		    <%= item.description %><br>
+    		    <%= item.city %><br>
+    		    $<%=item.current_price %><br>
+    		    <% if user_signed_in? %>
+              <%= form_for @bid do |f| %>
+                <% if item.user_id==current_user.id %>
+                  <div class="input-prepend input-append">
+                      <span class="add-on">$</span>
+                      <%=f.text_field :bid, :placeholder =>'> '+item.current_price.to_s, :class=>'span1', :disabled=>'disabled' %>
+                      <span class="add-on">.00</span>
+                  </div>
+                  <br>
+      				    <%= f.submit 'Bid', :disabled => 'disabled' %>
+                <% else %>
+                  <fieldset>
+                    <input type='hidden' id='bid_user_id' name='bid[user_id]' value="<%= current_user.id %>">
+                    <input type='hidden' id='bid_item_id' name='bid[item_id]' value="<%= item.id %>">
+                    <div class="input-prepend input-append">
+                      <span class="add-on">$</span>
+                      <%=f.text_field :bid, :placeholder =>'> '+item.current_price.to_s, :class=>'span1' %>
+                      <span class="add-on">.00</span>
+                    </div>
+                    <br>
+                    <%= f.submit 'Bid' %>
+                  </fieldset>
+                <% end %>
+    			    <% end %>
+            <% end %>
+    	    </p>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>

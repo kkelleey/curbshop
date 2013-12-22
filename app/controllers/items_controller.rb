@@ -33,6 +33,7 @@ class ItemsController < ApplicationController
       @item = Item.new(item_params)
 
       if @item.save
+        flash[:notice] = "Success! Your item is now on your curb."
         redirect_to @item
       else
         render :new
@@ -47,5 +48,31 @@ class ItemsController < ApplicationController
 
     def show
       @item=Item.find(params[:id])
+      @bid=Bid.new
+    end
+
+    def destroy
+      Item.find(params[:id]).destroy
+      redirect_to curb_path
+    end
+
+    def edit
+      @item=Item.find(params[:id])
+      @instagram_images=current_user.instagram_images
+      @user_id=current_user.id 
+      @user=User.find(@user_id)
+      3.times{@item.item_images.build}  
+    end
+
+    def update
+      item_params = params.require(:item).permit(:category_id,:picture, :starting_price, :description, :city)
+      @item=Item.update(params[:id], item_params)
+      if @item.save
+        flash[:notice] = "Success! Your item has been updated."  
+        redirect_to @item
+      else
+        flash[:notice] = "We couldn't update your item. Please try again."
+        render :edit
+      end
     end
 end

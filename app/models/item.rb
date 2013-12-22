@@ -40,14 +40,12 @@ class Item < ActiveRecord::Base
 	end
 
 	def imageDisplay
-		if !(picture.nil?)
+		if picture
 			return picture
+		elsif item_images[0]
+			return item_images[0].image(:medium)
 		else
-			if !(item_images[0].nil?)
-				return item_images[0].image(:medium)
-			else
-				return "missing.jpeg"
-			end
+			return "missing.jpeg"
 		end
 	end
 end
