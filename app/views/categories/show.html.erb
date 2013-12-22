@@ -1,2 +1,3 @@
 <h1><%= @category.id %></h1>
 <h3><%= @category.name %> </h3>
+<%= link_to "delete", @category, method: :delete, data: { confirm: "You sure?" } %>

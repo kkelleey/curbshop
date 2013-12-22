@@ -9,9 +9,10 @@ class BidsController < ApplicationController
       	@bid = Bid.new(bid_params)
 
      	if @bid.save
-     		redirect_to shopping_path 
+     		redirect_to @bid
      	else
-     		redirect_to shopping_path
+     		flash.now[:error] = "Could not save bid"
+        redirect_to shopping_path
     	end
 	end
 

@@ -8,9 +8,6 @@
   	<li class="<%= 'active' if params[:category_id] == category.id.to_s %>"> <%=link_to "#{category.name}", :category_id => category.id %></li>
   <% end %>
 </ul>
-<div style='width: 800px;'>
-  <div id="map" style='width: 800px; height: 400px;'></div>
-</div>
 <div id="wrapper">
 	<div id="columns">
 <% @items.each do |item| %>
