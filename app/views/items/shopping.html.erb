@@ -19,11 +19,16 @@
 		
 		$<%=item.current_price %><br>
 		<% if user_signed_in? %>
-			<%= form_for @bid do |f| %>
-				<%=f.text_field :bid %>
+      <%= form_for @bid do |f| %>
 				<input type='hidden' id='bid_user_id' name='bid[user_id]' value="<%= current_user.id %>">
 				<input type='hidden' id='bid_item_id' name='bid[item_id]' value="<%= item.id %>">
-				<%= f.submit 'Bid' %>
+        <% if item.user_id==current_user.id %>
+          <%=f.text_field :bid, :placeholder =>"You can't bid on your own item", :disabled => 'disabled' %>
+  				<%= f.submit 'Bid', :disabled => 'disabled' %>
+        <% else %>
+          <%=f.text_field :bid, :placeholder =>'> '+item.current_price.to_s %>
+          <%= f.submit 'Bid' %>
+        <% end %>
 			<% end %>
 		<% end %>
 	</p>
