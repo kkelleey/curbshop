@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
 
-  before_filter :authenticate_user!, :except => [:shopping]
+  before_filter :authenticate_user!, :except => [:shopping,:show]
   	def shopping
         @bid=Bid.new
         @categories=Category.all 
@@ -19,8 +19,8 @@ class ItemsController < ApplicationController
 
 
   	def new
-      @instagram_images=current_user.instagram_images
       @user_id=current_user.id 
+      @instagram_images=current_user.instagram_images('thumbnail')
       @user=User.find(@user_id)
       @item=Item.new
       3.times{@item.item_images.build}   

@@ -1,22 +1,22 @@
 <h2>Sign up</h2>
-
+<br />
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
+  <div><%= f.label :email %>
+  <%= f.email_field :email, :autofocus => true %></div><br />
 
-  <div><%= f.label :instagram_username %><br />
+  <div><%= f.label :instagram_username %>
   <%= f.text_field :instagram_username, :autofocus => true %>
-  <span class="help-block">Optional. This will allow you to select pictures from your instagram account instead of browsing from your computer when you put an item on your curb. Note: your account must be public for CurbShop to access your photos</span></div>
+  <span class="help-block">Optional. This will allow you to select pictures from your Instagram account instead of browsing from your computer when you put an item on your curb. Note: your account must be public for CurbShop to access your photos</span></div><br />
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
+  <div><%= f.label :password %>
+  <%= f.password_field :password %></div> <br />
 
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
+  <div><%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %></div><br />
 
-  <div><%= f.submit "Sign up" %></div>
+  <div><%= f.submit "Sign up", :class=>'btn btn-primary'  %></div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+Already have an account? <%= render "devise/shared/links" %>

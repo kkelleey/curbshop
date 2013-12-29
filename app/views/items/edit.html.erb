@@ -5,12 +5,12 @@
 <br>
 <%= form_for @item, :html => { :multipart => true } do |f|  %>
 
-<% if !@instagram_images.nil? %>
+<% if @instagram_images %>
   <h5>Here are your most recent Instagram images. If one 
     of them is an image of your item, select it below. Otherwise, you can browse from your computer. </h5>
-  <% @instagram_images.each do |image_url| %>
-  <%= f.radio_button(:picture, image_url) %> 
-  <img src="<%=image_url %>" data-value="image_value" class="img-polaroid">
+  <% @instagram_images.each do |image| %>
+  <%= f.radio_button(:picture, image.standard_resolution.url) %> 
+  <img src="<%=image.thumbnail.url %>" data-value="image_value" class="img-polaroid">
   <% end %>
 <% end %>
   

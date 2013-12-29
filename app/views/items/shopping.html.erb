@@ -1,4 +1,7 @@
 
+<% if flash[:notice] %>
+    <div class="alert alert-success"><%= flash[:notice] %></div>
+<% end %>
 <ul class="nav nav-pills">
   <li class="<%= 'active' if params[:category_id].blank? %>">
     <%= link_to "All", shopping_path %>
@@ -12,40 +15,19 @@
 	<div id="columns">
     <% @items.each do |item| %>
   	  <div class="pin">
-  		  <div class="span2">
+  		  <div class="span3">
           <%= link_to image_tag(item.imageDisplay), item %>
     		  <p>
     		    <%= item.description %><br>
     		    <%= item.city %><br>
     		    $<%=item.current_price %><br>
-    		    <% if user_signed_in? %>
-              <%= form_for @bid do |f| %>
-                <% if item.user_id==current_user.id %>
-                  <div class="input-prepend input-append">
-                      <span class="add-on">$</span>
-                      <%=f.text_field :bid, :placeholder =>'> '+item.current_price.to_s, :class=>'span1', :disabled=>'disabled' %>
-                      <span class="add-on">.00</span>
-                  </div>
-                  <br>
-      				    <%= f.submit 'Bid', :disabled => 'disabled' %>
-                <% else %>
-                  <fieldset>
-                    <input type='hidden' id='bid_user_id' name='bid[user_id]' value="<%= current_user.id %>">
-                    <input type='hidden' id='bid_item_id' name='bid[item_id]' value="<%= item.id %>">
-                    <div class="input-prepend input-append">
-                      <span class="add-on">$</span>
-                      <%=f.text_field :bid, :placeholder =>'> '+item.current_price.to_s, :class=>'span1' %>
-                      <span class="add-on">.00</span>
-                    </div>
-                    <br>
-                    <%= f.submit 'Bid' %>
-                  </fieldset>
-                <% end %>
-    			    <% end %>
-            <% end %>
+    		    
     	    </p>
         </div>
       </div>
     <% end %>
   </div>
 </div>
+
+
+

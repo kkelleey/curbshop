@@ -1,9 +1,11 @@
+
+
 <% if flash[:notice] %>
     <div class="alert alert-success"><%= flash[:notice] %></div>
 <% end %>
 <div class="row">
   <div class="span4">
-    <%=image_tag @item.imageDisplay, :size=>"500x500", :class=>"img-polaroid" %>
+    <%=image_tag @item.imageDisplay, :class=>"img-polaroid" %>
   </div>
   <br>
   <br>
@@ -16,23 +18,25 @@
       
       $<%=@item.current_price %><br></strong>
     </div>
-      <% if @item.user_id==current_user.id %>
-        <%= link_to "Remove from curb", @item, method: :delete, data: { confirm: "Are you sure you want to remove this item from your curb?" } %>
-        <br>
-        <%= link_to "Edit item", edit_item_path %>
-      <% else %>
-        <%= form_for @bid do |f| %>
-          <fieldset>
-            <input type='hidden' id='bid_user_id' name='bid[user_id]' value="<%= current_user.id %>">
-            <input type='hidden' id='bid_item_id' name='bid[item_id]' value="<%= @item.id %>">
-            <div class="input-prepend input-append">
-              <span class="add-on">$</span>
-              <%=f.text_field :bid, :placeholder =>'> '+@item.current_price.to_s, :class=>'span1' %>
-              <span class="add-on">.00</span>
-            </div>
-            <br>
-            <%= f.submit 'Bid' %>
-          </fieldset>
+      <% if user_signed_in? %>
+        <% if @item.user_id==current_user.id %>
+          <%= link_to "Remove from curb", @item, method: :delete, data: { confirm: "Are you sure you want to remove this item from your curb?" } %>
+          <br>
+          <%= link_to "Edit item", edit_item_path %>
+        <% else %>
+          <%= form_for @bid do |f| %>
+            <fieldset>
+              <input type='hidden' id='bid_user_id' name='bid[user_id]' value="<%= current_user.id %>">
+              <input type='hidden' id='bid_item_id' name='bid[item_id]' value="<%= @item.id %>">
+              <div class="input-prepend input-append">
+                <span class="add-on">$</span>
+                <%=f.text_field :bid, :placeholder =>'> '+@item.current_price.to_s, :class=>'span1' %>
+                <span class="add-on">.00</span>
+              </div>
+              <br>
+              <%= f.submit 'Bid' %>
+            </fieldset>
+          <% end %>
         <% end %>
       <% end %>
   </div>
