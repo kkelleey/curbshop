@@ -8,7 +8,8 @@ class User < ActiveRecord::Base
 
  
 
-   def instagram_images(size='standard_resolution')
+   def instagram_images
+    #returns instagram urls
  		if instagram_username.nil?
  			return nil
  		else
@@ -19,11 +20,7 @@ class User < ActiveRecord::Base
 			instagram_id=Instagram.user_search(instagram_username).first.id
 			urls=[]
 			Instagram.user_recent_media(instagram_id).each do |image|
-				if size=='thumbnail'
-          urls<<image.images
-        else
-          urls<<image.images
-        end
+        urls<<image.images
 			end
 		return urls
 	  end

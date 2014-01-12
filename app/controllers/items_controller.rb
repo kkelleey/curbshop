@@ -20,10 +20,12 @@ class ItemsController < ApplicationController
 
   	def new
       @user_id=current_user.id 
-      @instagram_images=current_user.instagram_images('thumbnail')
+      @instagram_images=current_user.instagram_images
+      @instagram_images=nil
       @user=User.find(@user_id)
       @item=Item.new
-      3.times{@item.item_images.build}   
+      #3.times{@item.item_images.build}
+      @item.item_images.build    
   	end
 
     def create
@@ -61,7 +63,8 @@ class ItemsController < ApplicationController
       @instagram_images=current_user.instagram_images
       @user_id=current_user.id 
       @user=User.find(@user_id)
-      3.times{@item.item_images.build}  
+      #3.times{@item.item_images.build}
+      @item.item_images.build  
     end
 
     def update
