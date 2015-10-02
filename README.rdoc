@@ -1,28 +1,9 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is my first rails app, which I created as my final project for General Assembly Boston's Back End Web Development class in Fall of 2013. The app is marketplace for used furniture, similar to Craigslist, except with user accounts, Instagram integration and a better UI. 
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This app uses rails 4 and Bootstrap 2
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+
+
