@@ -9,9 +9,7 @@ class User < ActiveRecord::Base
   def instagram_images
     return nil if instagram_username.nil?
 
-    recent_media.reduce([]) do |urls, image|
-      urls << image.images
-    end
+    recent_media.map(&:images)
   end
 
   private
