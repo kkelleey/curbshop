@@ -9,11 +9,18 @@ class User < ActiveRecord::Base
   def instagram_images
     return nil if instagram_username.nil?
 
-    instagram_id = Instagram.user_search(instagram_username).first.id
-    urls = []
-    Instagram.user_recent_media(instagram_id).each do |image|
+    recent_media.reduce([]) do |urls, image|
       urls << image.images
     end
-    urls
+  end
+
+  private
+
+  def instagram_id
+    Instagram.user_search(instagram_username).first.id
+  end
+
+  def recent_media
+    Instagram.user_recent_media(instagram_id)
   end
 end
