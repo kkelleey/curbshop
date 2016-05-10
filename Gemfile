@@ -1,10 +1,13 @@
 source 'https://rubygems.org'
 
+ruby "2.3.0"
+
 gem 'aws-sdk', '~> 2.3'
 gem 'devise'
 gem 'instagram'
 gem 'image-picker-rails'
 gem 'jquery-rails'
+gem 'json', '~> 1.8.2'
 gem 'less-rails'
 gem 'twitter-bootstrap-rails'
 gem 'paperclip'
