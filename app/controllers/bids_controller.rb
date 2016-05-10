@@ -21,7 +21,7 @@ class BidsController < ApplicationController
 
 	def show
 		@bid = Bid.find(params[:id])
-		@image = @bid.item.imageDisplay #Does the accessor imageDisplay work?  If so, change to underscore_case (image_display)
+		@image = @bid.item.image_display #Does the accessor imageDisplay work?  If so, change to underscore_case (image_display)
 	end
 
   private
