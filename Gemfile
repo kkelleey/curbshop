@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'aws-sdk', '~> 2.3'
 gem 'devise'
 gem 'instagram'
 gem 'image-picker-rails'
