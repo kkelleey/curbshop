@@ -22,7 +22,7 @@ Curbshop::Application.routes.draw do
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
   resources :items
-  resources :bids
+  resources :bids, only: [:new, :create, :show]
   resources :users
   resources :categories
 
