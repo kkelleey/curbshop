@@ -1,44 +1,42 @@
-
-
 <h1>Edit your item.</h1>
 <br>
 <br>
 <%= form_for @item, :html => { :multipart => true } do |f|  %>
 
-<% if @instagram_images %>
-  <h5>Here are your most recent Instagram images. If one 
-    of them is an image of your item, select it below. Otherwise, you can browse from your computer. </h5>
-  <% @instagram_images.each do |image| %>
-  <%= f.radio_button(:picture, image.standard_resolution.url) %> 
-  <img src="<%=image.thumbnail.url %>" data-value="image_value" class="img-polaroid">
+  <% if @instagram_images %>
+    <h5>Here are your most recent Instagram images. If one 
+      of them is an image of your item, select it below. Otherwise, you can browse from your computer. </h5>
+    <% @instagram_images.each do |image| %>
+      <%= f.radio_button(:picture, image.standard_resolution.url) %> 
+      <img src="<%=image.thumbnail.url %>" data-value="image_value" class="img-polaroid">
+    <% end %>
   <% end %>
-<% end %>
-  
+
   <div>
     <%= f.label :category %>
     <%= f.select :category_id, Category.all.collect {|c| [ c.name, c.id ] } %>
-  <div>
-    <%= f.label :description %>
-    <%= f.text_field :description %>
-  </div>
-  <input type='hidden' id='item_user_id' name='item[user_id]' value="<%= @user_id %>">
-  <div>
-    <%= f.fields_for :item_images do |builder| %>
+    <div>
+      <%= f.label :description %>
+      <%= f.text_field :description %>
+    </div>
+    <input type='hidden' id='item_user_id' name='item[user_id]' value="<%= @user_id %>">
+    <div>
+      <%= f.fields_for :item_images do |builder| %>
 
-          <%= builder.label :image, "Image File" %>
-          <%= builder.file_field :image %>
-        <% end %> 
+        <%= builder.label :image, "Image File" %>
+        <%= builder.file_field :image %>
+      <% end %> 
 
-  </div>
-  <div>
-    <%=f.label :starting_price %>
-    <%= f.text_field :starting_price %>
-  </div>
+    </div>
+    <div>
+      <%=f.label :starting_price %>
+      <%= f.text_field :starting_price %>
+    </div>
 
-  <div>
-    <%= f.label :city %>
-    <%= f.text_field :city %>
-  </div>
+    <div>
+      <%= f.label :city %>
+      <%= f.text_field :city %>
+    </div>
 
-  <%= f.submit 'Save changes'%>
-<% end %> 
+    <%= f.submit 'Save changes'%>
+  <% end %> 
