@@ -1,5 +1,3 @@
-
-
 <% if flash[:notice] %>
     <div class="alert alert-success"><%= flash[:notice] %></div>
 <% end %>
@@ -15,7 +13,6 @@
       <strong><%= @item.description %>
         <br>
       <%= @item.city %><br>
-      
       $<%=@item.current_price %><br></strong>
     </div>
       <% if user_signed_in? %>
