@@ -1,5 +1,4 @@
 class CategoriesController < ApplicationController
-
   def show
     @category = Category.find(params[:id])
   end
@@ -14,7 +13,7 @@ class CategoriesController < ApplicationController
     @existing_categories = Category.all
 
     if @category.save
-      render :new
+      render @category
     else
       render :new
     end
@@ -24,10 +23,10 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
   end
 
-  def update 
+  def update
     @category = Category.update(params[:id], safe_category_params)
     if @category.save
-       redirect_to @category, :flash => { :success => "success" } #Can you use the Ruby 2.0 syntax here? flash: { success: "success" }
+      redirect_to @category, flash: { success: 'success' }
     else
       render :edit
     end
@@ -40,8 +39,7 @@ class CategoriesController < ApplicationController
 
   private
 
-    def safe_category_params
-      params.require(:category).permit(:name)
-    end
-
+  def safe_category_params
+    params.require(:category).permit(:name)
+  end
 end
