@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 ruby "2.3.0"
 
 gem 'aws-sdk', '~> 2.3'
+gem 'capybara-webkit'
 gem 'devise'
 gem 'instagram'
 gem 'image-picker-rails'
@@ -12,12 +13,14 @@ gem 'less-rails'
 gem 'twitter-bootstrap-rails'
 gem 'paperclip'
 gem 'rails', '4.0.0'
+gem 'rspec-rails'
+gem 'factory_girl_rails'
 gem 'sass-rails', '~> 4.0.0'
 gem 'turbolinks'
 gem 'therubyracer'
 
 # Use sqlite3 as the database for Active Record
-group :development, :test do 
+group :development, :test do
   gem 'sqlite3'
 end
 
