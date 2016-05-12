@@ -1,74 +1,63 @@
-<style>
-body {
-  background-color: rgba(150,150,0,.15);
-}
-</style>
-
 <h2>Items you are selling </h2>
 
 <% if @items_for_sale.empty? %>
-	<%= 'You do not have any items for sale' %>
+  <p>You do not have any items for sale </p>
 <% else %>
-	<div id="wrapper">
-		<div id="columns">
-			<% @items_for_sale.each do |item| %>
-				<div class="pin">
-					<%= link_to image_tag( item.image_display), item %>
-					<% if item.sold %>
-						<p>
-							<%= 'Your item sold for:'+item.highest_bid.to_s %>
-							<br/>
-							Contact: <a href="mailto:'<%= item.highest_bidder.email %>'"><%= item.highest_bidder.email%></a><br/>
-						</p>
-					<% elsif item.has_bids %>
-						<p>
-							This item has bids! Check back tomorrow for the contact information of the highest bidder. 
-						</p>
-					<% else %>
-						<p> This item doesn't have any bids. </p>
-						<%= link_to "Edit", edit_item_path(item) %>
-						<br>
-						<%= link_to "Remove from curb", item, method: :delete, data: { confirm: "Are you sure you want to remove this item from your curb?" } %>
-					<% end %>
-				</div>
-			<% end %>
-		</div>
-	</div>
+  <div id="wrapper">
+    <div id="columns">
+      <% @items_for_sale.each do |item| %>
+        <div class="pin">
+          <%= link_to image_tag(item.image_display), item %>
+          <% if item.sold %>
+            <p>
+            <%= 'Your item sold for:'+item.highest_bid.to_s %>
+            <br/>
+            Contact: <a href="mailto:'<%= item.highest_bidder.email %>'"><%= item.highest_bidder.email%></a><br/>
+            </p>
+          <% elsif item.has_bids %>
+            <p>
+            This item has bids! Check back tomorrow for the contact information of the highest bidder.
+            </p>
+          <% else %>
+            <p> This item doesn't have any bids. </p>
+            <%= link_to "Edit", edit_item_path(item) %>
+            <br>
+            <%= link_to "Remove from curb", item, method: :delete, data: { confirm: "Are you sure you want to remove this item from your curb?" } %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 <% end %>
-
-
 
 <h2>Items you are bidding on </h2>
 <% if @items_bid_on.empty? %>
-	<%= 'You have not bid on any items' %>
+  <p>You have not bid on any items</p>
 <% else %>
-	<div id="wrapper">
-		<div id="columns">
-			<% @items_bid_on.each do |item| %>
-				<div class="pin">
-					<% 
-						#full item
-						item = Item.find(item.item_id) 
-					%>
-					<img src="<%=item.image_display %>" />
-					<% if item.sold %>
-						<% if item.highest_bidder==current_user %>
-							<p>
-								You won this item for <%=item.highest_bid %><br/>Contact: <a href="mailto:'<%= item.highest_bidder.email %>'"><%= item.highest_bidder.email%></a>
-							</p>
-						<%else%>
-							<p> Sorry, you didn't win this item.</p>
-						<%end %>
-					<% else %>
-						<% if item.highest_bidder==current_user %>
-							<p>You are currently the highest bidder on this item. The item will be awarded to the highest bidder at the end of the day, so check back tomorrow to see if you've won. </p>
-						<% else %>
-							<p> You are no longer the higest bidder on this item. </p>
-						<% end %>
-					<% end %>
-				</div>
-			<% end %>
-		</div>
-	</div>
+  <div id="wrapper">
+    <div id="columns">
+      <% @items_bid_on.each do |item| %>
+        <div class="pin">
+        <img src="<%= item.image_display %>" />
+        <% if item.sold %>
+          <% if item.highest_bidder==current_user %>
+            <p>
+              You won this item for <%= item.highest_bid %>
+            <br/>Contact:
+            <%= mail_to item.highest_bidder.email %>
+            </p>
+          <%else%>
+            <p> Sorry, you didn't win this item.</p>
+          <%end %>
+        <% else %>
+          <% if item.highest_bidder == current_user %>
+            <p>You are currently the highest bidder on this item. The item will be awarded to the highest bidder at the end of the day, so check back tomorrow to see if you've won. </p>
+          <% else %>
+            <p> You are no longer the higest bidder on this item. </p>
+          <% end %>
+        <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 <% end %>
-
