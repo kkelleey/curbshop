@@ -12,7 +12,7 @@ Curbshop::Application.routes.draw do
   #   get 'products/:id' => 'catalog#view'
   get 'shopping' => 'items#shopping'
   get 'new' => 'items#new'
-  get 'curb' => 'items#curb'
+  get 'curb' => 'curbs#show'
   get 'about' => 'items#about'
 
 
