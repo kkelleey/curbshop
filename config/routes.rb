@@ -11,10 +11,8 @@ Curbshop::Application.routes.draw do
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
   get 'shopping' => 'items#shopping'
-  get 'new' => 'items#new'
   get 'curb' => 'curbs#show'
   get 'about' => 'items#about'
-
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
