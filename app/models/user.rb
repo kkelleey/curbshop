@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   def instagram_images
-    return nil if instagram_username.nil?
+    return [] if instagram_username.nil?
 
     recent_media.map(&:images)
   end
@@ -19,6 +19,6 @@ class User < ActiveRecord::Base
   end
 
   def recent_media
-    Instagram.user_recent_media(instagram_id)
+    Instagram.user_recent_media(instagram_id) || []
   end
 end
