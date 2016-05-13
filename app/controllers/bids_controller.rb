@@ -9,7 +9,7 @@ class BidsController < ApplicationController
       redirect_to @bid
     else
       flash.now[:error] = 'Could not save bid'
-      redirect_to shopping_path
+      redirect_to root_path
     end
   end
 

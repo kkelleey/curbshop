@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, except: [:shopping, :show]
+  before_action :authenticate_user!, except: [:index, :show]
 
-  def shopping
+  def index
     @bid = Bid.new
     @categories = Category.all
     if params[:category_id].blank?
