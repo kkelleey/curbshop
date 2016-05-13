@@ -13,7 +13,7 @@ class ItemsController < ApplicationController
 
   def new
     @user_id = current_user.id
-    @instagram_images = current_user.instagram_images('thumbnail')
+    @instagram_images = current_user.instagram_images
     @user = User.find(@user_id)
     @item = Item.new
     3.times { @item.item_images.build }
