@@ -7,9 +7,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   def instagram_images
-    return [] if instagram_username.nil?
+    return [] unless instagram_username
 
-    recent_media.map(&:images)
+    recent_media.first(6).map(&:images)
   end
 
   private
