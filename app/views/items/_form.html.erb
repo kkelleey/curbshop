@@ -1,4 +1,4 @@
-<%= form_for @item, :html => { :multipart => true } do |f|  %>
+<%= form_for @item, html: { multipart: true, class: 'form-horizontal' } do |f| %>
 
   <% if @instagram_images %>
     <h5>Here are your most recent Instagram images. If one 
@@ -9,32 +9,30 @@
     <% end %>
   <% end %>
 
-  <div>
+  <div class="form-group">
     <%= f.label :category %>
     <%= f.select :category_id, Category.all.collect {|c| [ c.name, c.id ] } %>
-    <div>
-      <%= f.label :description %>
-      <%= f.text_field :description %>
-    </div>
-    <input type='hidden' id='item_user_id' name='item[user_id]' value="<%= @user_id %>">
-    <div>
-      <%= f.fields_for :item_images do |builder| %>
-
-        <%= builder.label :image, "Image File" %>
-        <%= builder.file_field :image %>
-      <% end %> 
-
-    </div>
-    <div>
-      <%=f.label :starting_price %>
-      <%= f.text_field :starting_price %>
-    </div>
-
-    <div>
-      <%= f.label :city %>
-      <%= f.text_field :city %>
-    </div>
-
-    <%= f.submit %>
   </div>
+  <div class="form-group">
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+  </div>
+  <input type='hidden' id='item_user_id' name='item[user_id]' value="<%= @user_id %>">
+  <div class="form-group">
+    <%= f.fields_for :item_images do |builder| %>
+      <%= builder.label :image, "Image File" %>
+      <%= builder.file_field :image %>
+    <% end %>
+  </div>
+  <div class="form-group">
+    <%=f.label :starting_price %>
+    <%= f.text_field :starting_price %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :city %>
+    <%= f.text_field :city %>
+  </div>
+
+  <%= f.submit %>
 <% end %>
