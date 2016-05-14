@@ -2,11 +2,4 @@
   <p><%=category.id %></p>
   <p><%=category.name%></p>
 <% end %>
-<%= form_for @category, :html => { :multipart => true } do |f| %>
-<div>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-</div>
-
-<%= f.submit 'Add Category' %>
-<% end %>
+<%= render 'form' %>

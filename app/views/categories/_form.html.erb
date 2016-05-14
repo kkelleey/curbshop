@@ -1,0 +1,7 @@
+<%= form_for @category do |f| %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <%= f.submit nil, class: "btn btn-default" %>
+<% end %>
