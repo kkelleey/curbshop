@@ -22,7 +22,7 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(new_safe_item_params)
     if @item.save
-      flash[:notice] = 'Success! Your item is now on your curb.'
+      flash[:success] = 'Success! Your item is now on your curb.'
       redirect_to @item
     else
       render :new
@@ -50,10 +50,10 @@ class ItemsController < ApplicationController
   def update
     @item = Item.update(params[:id], update_safe_item_params)
     if @item.save
-      flash[:notice] = 'Success! Your item has been updated.'
+      flash[:success] = 'Success! Your item has been updated.'
       redirect_to @item
     else
-      flash[:notice] = "We couldn't update your item. Please try again."
+      flash[:danger] = "We couldn't update your item. Please try again."
       render :edit
     end
   end

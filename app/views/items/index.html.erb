@@ -1,6 +1,3 @@
-<% if flash[:notice] %>
-  <div class="alert alert-success"><%= flash[:notice] %></div>
-<% end %>
 <ul class="nav nav-pills">
   <li class="<%= 'active' if params[:category_id].blank? %>">
     <%= link_to "All", items_path %>
