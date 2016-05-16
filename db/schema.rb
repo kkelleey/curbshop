@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131215032722) do
+ActiveRecord::Schema.define(version: 20160516001410) do
 
   create_table "bids", force: true do |t|
     t.integer  "item_id"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20131215032722) do
     t.integer  "user_id",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "sold",                       default: false
   end
 
   create_table "users", force: true do |t|
