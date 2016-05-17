@@ -14,7 +14,7 @@
             <br/>
             Contact: <a href="mailto:'<%= item.highest_bidder.email %>'"><%= item.highest_bidder.email%></a><br/>
             </p>
-          <% elsif item.has_bids %>
+          <% elsif item.bids.any? %>
             <p>
             This item has bids! Check back tomorrow for the contact information of the highest bidder.
             </p>

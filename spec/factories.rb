@@ -6,4 +6,9 @@ FactoryGirl.define do
   factory :item do
     sequence(:description) { |n| "Description #{n}" }
   end
+
+  factory :user do
+    email 'test@example.com'
+    password 'f4k3p455w0rd'
+  end
 end

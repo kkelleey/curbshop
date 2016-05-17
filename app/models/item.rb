@@ -17,11 +17,6 @@ class Item < ActiveRecord::Base
     bids.any? ? highest_bid : starting_price
   end
 
-  def sold
-    return false unless bids
-    bids.last.created_at < Date.today
-  end
-
   def image_display
     picture || item_images[0].try(:image, :medium) || 'missing.jpeg'
   end
