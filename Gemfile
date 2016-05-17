@@ -18,6 +18,7 @@ gem 'factory_girl_rails'
 gem 'sass-rails', '~> 4.0.0'
 gem 'turbolinks'
 gem 'therubyracer'
+gem 'whenever', :require => false
 
 # Use sqlite3 as the database for Active Record
 group :development, :test do
