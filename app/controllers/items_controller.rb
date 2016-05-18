@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_item, only: [:destroy]
+  before_action :set_item, only: [:edit, :update, :destroy]
 
   def index
     @bid = Bid.new
@@ -45,7 +45,6 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @item = Item.find(params[:id])
     @instagram_images = current_user.instagram_images
     @user_id = current_user.id
     @user = User.find(@user_id)
@@ -53,8 +52,7 @@ class ItemsController < ApplicationController
   end
 
   def update
-    @item = Item.update(params[:id], update_safe_item_params)
-    if @item.save
+    if @item.update_attributes(update_safe_item_params)
       flash[:success] = 'Success! Your item has been updated.'
       redirect_to @item
     else
