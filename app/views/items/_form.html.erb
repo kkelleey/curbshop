@@ -19,7 +19,6 @@
           <%= f.label :description %>
           <%= f.text_field :description %>
         </div>
-        <input type='hidden' id='item_user_id' name='item[user_id]' value="<%= @user_id %>">
         <div class="form-group">
           <%= f.fields_for :item_images do |builder| %>
             <%= builder.label :image, "Image File" %>

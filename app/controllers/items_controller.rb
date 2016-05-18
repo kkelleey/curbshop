@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_item, only: [:destroy]
 
   def index
     @bid = Bid.new
@@ -35,7 +36,11 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    Item.find(params[:id]).destroy
+    if @item.destroy
+      flash[:success] = 'Success! Your item has been removed from your curb'
+    else
+      flash[:danger] = 'Sorry, we were unable to remove your item'
+    end
     redirect_to curb_path
   end
 
@@ -71,5 +76,12 @@ class ItemsController < ApplicationController
     params.require(:item).permit(
       :category_id, :picture, :starting_price, :description, :city
     )
+  end
+
+  def set_item
+    @item = current_user.items.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    flash[:danger] = 'You are not authorized to perform this action'
+    redirect_to request.referrer || root_path
   end
 end
