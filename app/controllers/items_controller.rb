@@ -21,7 +21,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.new(new_safe_item_params)
+    @item = Item.new(item_params)
     if @item.save
       flash[:success] = 'Success! Your item is now on your curb.'
       redirect_to @item
@@ -63,11 +63,11 @@ class ItemsController < ApplicationController
 
   private
 
-  def new_safe_item_params
+  def item_params
     params.require(:item).permit(
       :category_id, :description, :picture, :item_image, :user_id,
       :starting_price, :city, item_images_attributes: [:image]
-    )
+    ).merge(user_id: current_user.id)
   end
 
   def update_safe_item_params
