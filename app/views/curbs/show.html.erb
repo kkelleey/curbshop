@@ -7,10 +7,10 @@
     <div id="columns">
       <% @items_for_sale.each do |item| %>
         <div class="pin">
-          <%= link_to image_tag(item.image_display), item %>
+          <%= link_to image_tag(item.image_display, size: "200"), item %>
           <% if item.sold %>
             <p>
-            <%= 'Your item sold for:'+item.highest_bid.to_s %>
+            <%= 'Your item sold for:' + item.highest_bid.to_s %>
             <br/>
             Contact: <a href="mailto:'<%= item.highest_bidder.email %>'"><%= item.highest_bidder.email%></a><br/>
             </p>
@@ -38,7 +38,7 @@
     <div id="columns">
       <% @items_bid_on.each do |item| %>
         <div class="pin">
-        <img src="<%= item.image_display %>" />
+          <%= link_to image_tag(item.image_display, size: "200"), item %>
         <% if item.sold %>
           <% if item.highest_bidder==current_user %>
             <p>
